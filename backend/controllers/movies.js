@@ -1,9 +1,15 @@
-const db = require('../database/movie.json');
-
-console.log(db)
+let db = require('../models/movies');
 
 exports.getAllMovie = (req, res, next) => {
-
+	db.find()
+		.then((films) => {
+			res.status(200).json(films);
+		})
+		.catch((error) => {
+			res.status(400).json({
+				error: error,
+			});
+		});
 };
 
 exports.createMovie = (req, res, next) => {

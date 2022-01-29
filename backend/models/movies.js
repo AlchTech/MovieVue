@@ -1,4 +1,4 @@
-[
+const films = [
   {
     "id": 1,
     "title": "Beetlejuice",
@@ -2126,3 +2126,17 @@
     "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BNDc4MThhN2EtZjMzNC00ZDJmLThiZTgtNThlY2UxZWMzNjdkXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg"
   }
 ]
+
+exports.find = () => {
+	return new Promise((resolve, reject) =>
+		resolve(JSON.parse(JSON.stringify(films))),
+	);
+};
+
+exports.findById = (id) => {
+	return new Promise((resolve, reject) =>
+		resolve(
+			JSON.parse(JSON.stringify(films)).find((film) => film._id == id),
+		),
+	);
+};
