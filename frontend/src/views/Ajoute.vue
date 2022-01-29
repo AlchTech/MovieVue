@@ -1,6 +1,13 @@
 <template>
 <Header />
-<main></main>
+<main>
+    
+</main>
+
 <Footer />
 
 </template>
+
+<script>
+
+</script>
