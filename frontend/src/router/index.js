@@ -9,8 +9,8 @@ import Ajoute from "../views/Ajoute.vue";
 // Creation des routes
 const routes = [
   { path: "/", component: Home },
-  { path: "/modifie", component: Modifie },
-  { path: "/ajoute", component: Ajoute },
+  { path: "/Modifie/:id", component: Modifie },
+  { path: "/Ajoute", component: Ajoute },
 ];
 
 // parametre du router

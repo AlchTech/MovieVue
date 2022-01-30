@@ -12,6 +12,17 @@ exports.getAllMovie = (req, res, next) => {
 		});
 };
 
+exports.getOneMovie = (req, res, next) => {
+	db.findbyid()
+		.then((films) => {
+			res.status(200).json(films);
+		})
+		.catch((error) => {
+			res.status(400).json({
+				error: error,
+			});
+		});
+};
 
 // CREER LA FUNCTION CREATE DANS ../MODELS/MOVIE.JS
 exports.createMovie = (req, res, next) => {

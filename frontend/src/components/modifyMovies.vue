@@ -63,22 +63,28 @@
       value="Envoyer"
       aria-label="Envoyer formulaire"
     />
-
+    <input
+      type="submit"
+      @click="oneMovie"
+      value="Envoyer"
+      aria-label="Envoyer formulaire"
+    />
   </form>
-
 </template>
 
 <script>
 export default {
-name: "newMovies",
-
+  name: "newMovies",
 
   methods: {
+    oneMovie: function (req) {
+      alert(req.params);
+    },
 
     createMovie: function (e) {
       e.preventDefault();
 
-// BUG AVEC GENRE ET ACTOR
+      // BUG AVEC GENRE ET ACTOR
 
       const title = document.getElementById("createTitle").value;
       const year = document.getElementById("createYear").value;
@@ -117,40 +123,3 @@ name: "newMovies",
   },
 };
 </script>
-
-<style>
-main {
-  background-color: #262626;
-  padding-block: 5%;
-}
-.newMovie {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  margin-inline: 20%;
-  border-radius: 1rem;
-  color: white;
-  background-color: #76060c;
-  padding-block-end: 5%;
-}
-textarea {
-  margin-block: 2%;
-  width: 60%;
-  padding-block: 2%;
-  border-radius: 1rem;
-  text-align: center;
-}
-
-input {
-  margin-block: 2%;
-  width: 60%;
-  padding-block: 2%;
-  border-radius: 1rem;
-  text-align: center;
-}
-input[type="submit"] {
-  width: 61%;
-}
-</style>
