@@ -1,7 +1,8 @@
 <template>
   <header>
-    <h1>{{ title }}</h1>
-    <router-link to="/Ajoute"><p class="link">Ajouter un filme</p></router-link>
+<h1>{{ title }}</h1>
+
+
   </header>
 </template>
 
@@ -21,9 +22,5 @@ header {
 h1 {
   color: #262626;
 }
-.link {
-  color: #262626;
-  margin-block-start: 5%;
-  font-size: 1.4rem;
-}
+
 </style>

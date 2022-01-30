@@ -2140,3 +2140,22 @@ exports.findById = (id) => {
 		),
 	);
 };
+
+exports.destroy = (id) => {
+  return new Promise((resolve, reject) =>
+    resolve(
+		 console.log(id)
+		),
+	);
+};
+
+exports.add = (data) => {
+  return new Promise((resolve, reject) =>
+    resolve(
+      console.log(data)
+    ),
+	);
+};
+
+exports.modify = () => {
+}

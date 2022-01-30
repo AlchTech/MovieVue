@@ -1,7 +1,8 @@
 <template>
   <div class="films">
     <div class="film" v-for="movie in movies" :key="movie">
-      <button @click="deleteMovie(movie)">Delete</button>
+<button @click="deleteMovie(movie.id)">Supprimer</button>
+
       <h3>{{ movie.title }}</h3>
       <img v-bind:src="movie.posterUrl" alt="" />
       <span>{{ movie.director }} </span>
@@ -17,22 +18,18 @@ export default {
   data() {
     return { movies: [] };
   },
+methods: { deleteMovie: function(id) { fetch("http://localhost:3000/api/movies/"
++ id, { method: "delete"}) }, },
+
   created() {
     // Simple GET request using fetch
     fetch("http://localhost:3000/api/movies")
       .then((res) => res.json())
       .then((res) => this.movies.push(...res));
-  },
-  deleteMovie(movie) {
-    let movieId = movie.id;
+},
 
-    fetch("http://localhost:3000/api/movies/" + movieId, {
-      method: "delete",
-      headers: {},
-    })
-      .then((res) => res.json())
-      .then(() => location.reload());
-  },
+
+
 };
 </script>
 

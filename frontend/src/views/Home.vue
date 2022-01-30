@@ -1,13 +1,13 @@
 <template>
 <Header title="VueJS Movie : List" />
 <main>
+<router-link to="/Ajoute"><p class="link">Ajouter un filme</p></router-link>
+
   <getAllMovies />
 </main>
 
-<Footer
-  copyright="Copyright ©
-"
-/>
+<Footer copyright="Copyright © " />
+
 
 </template>
 
@@ -32,5 +32,8 @@ main {
 padding-block: 2%;
 
 }
+.link { background-color : #76060c; color: white; margin-block-start: 5%; width:
+20%; font-size: 1.4rem; margin: auto; padding: 1% }
+
 </style>
 
