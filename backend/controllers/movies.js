@@ -12,22 +12,12 @@ exports.getAllMovie = (req, res, next) => {
 		});
 };
 
-exports.getOneMovie = (req, res, next) => {
-	db.findbyid()
-		.then((films) => {
-			res.status(200).json(films);
-		})
-		.catch((error) => {
-			res.status(400).json({
-				error: error,
-			});
-		});
-};
 
-// CREER LA FUNCTION CREATE DANS ../MODELS/MOVIE.JS
+// BUG CREER LA FUNCTION CREATE DANS ../MODELS/MOVIE.JS + Créer une generation de l'id
 exports.createMovie = (req, res, next) => {
 	const movieObject = req.body;
 	const movie = ({
+	// "id" : movieObject.id
     "title": movieObject.title,
     "year": movieObject.year,
     "runtime": movieObject.runtime,
@@ -37,18 +27,18 @@ exports.createMovie = (req, res, next) => {
     "plot": movieObject.plot,
     "posterUrl": movieObject.posterUrl
 	})
-	db.add(movie);
+	movie.add().then(() => res.status(201).json({ message: 'Objet enregistrée !' }))
+		.catch((error) => res.status(400).json({ error }));
 };
 
 exports.modifyMovie = (req, res, next) => {
-	db.findById({ _id: req.params.id }).then((movie) => {
-		console.log(movie)
-	})
+	db.modify({ body: req.body}).then(() => res.status(200).json({ message: 'Objet modifié !' }))
+					.catch((error) => res.status(400).json({ error }));
 
 };
 
 // CREER LA FUNCTION DELETE DANS ../MODELS/MOVIE.JS
 exports.deleteMovie = (req, res, next) => {
-	db.destroy({ _id: req.params.id }).then(() => res.status(200).json({ message: 'Objet supprimé !' }))
+	db.destroy({ id: req.params.id }).then(() => res.status(200).json({ message: 'Objet supprimé !' }))
 					.catch((error) => res.status(400).json({ error }));
 };

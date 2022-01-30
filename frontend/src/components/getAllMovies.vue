@@ -11,7 +11,9 @@
 
       <h3>{{ movie.title }}</h3>
       <img v-bind:src="movie.posterUrl" alt="" />
-      <span>{{ movie.director }} </span>
+<span>{{ movie.director }} </span>
+
+
 
       <span>{{ movie.year }} </span>
     </div>
@@ -55,6 +57,8 @@ methods: { deleteMovie: function(id) { fetch("http://localhost:3000/api/movies/"
   display: flex;
   flex-direction: column;
   align-items: center;
+border-radius: 1rem; overflow: hidden;
+
 }
 .film_choice { display: flex; justify-content: space-around; width: 100%;} .link
 { background-color : white; padding: 1%; }

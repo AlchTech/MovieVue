@@ -63,6 +63,7 @@
       value="Envoyer"
       aria-label="Envoyer formulaire"
     />
+    <a href=http://localhost:8080/> Back </a>
 
   </form>
 
@@ -72,13 +73,9 @@
 export default {
 name: "newMovies",
 
+methods: {
 
-  methods: {
-
-    createMovie: function (e) {
-      e.preventDefault();
-
-// BUG AVEC GENRE ET ACTOR
+createMovie: function() {    
 
       const title = document.getElementById("createTitle").value;
       const year = document.getElementById("createYear").value;
@@ -88,6 +85,8 @@ name: "newMovies",
       //const actors = document.getElementById("createActors").value;
       const plot = document.getElementById("createPlot").value;
       const posterUrl = document.getElementById("createPosterUrl").value;
+
+
 
       let data = {
         title: title,
@@ -100,23 +99,45 @@ name: "newMovies",
         posterUrl: posterUrl,
       };
 
-      fetch("http://localhost:3000/api/movies/", {
-        method: "post",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then(() => {
-          alert("Article enregistrée !");
-          location.reload();
-        })
-        .catch((error) => alert(error.message));
+  const controller = new AbortController()
+  const signal = controller.signal
+        console.log('Now fetching');
+        var urlToFetch = "http://localhost:3000/api/movies/";
+
+        fetch(urlToFetch, {
+                method: 'post',
+                signal: signal,
+                headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+                },
+          body: JSON.stringify(data),
+            })
+            .then(function() {
+                console.log(`Fetch complete. (Not aborted)`);
+            }).catch(function(err) {
+                console.error(` Err: ${err}`);
+            });
     },
+abortFetching: function() {    
+  const controller = new AbortController()
+        console.log('Now aborting');
+        // Abort.
+        controller.abort()
+    },
+
+
+
+// BUG AVEC GENRE ET ACTOR
+
+
+
+// BUG Fetch ne veut plus fonctionné (faut trouver l'ereur, mais sur le reseau
+
   },
 };
 </script>
+
 
 <style>
 main {

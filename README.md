@@ -25,3 +25,25 @@ Créer un application pouvant afficher des listes de film:
  - Ajouter un film dans la .json                POST/movies
  - Modifier un film                             PUT/movies/:id
  - Supprimer un film                            DELETE/movies/:id
+
+
+
+### Installation
+Clone le projet
+```code
+
+git clone https://github.com/AlchTech/MovieVue.git
+
+``` 
+
+Puis
+``` 
+cd frontend
+npm run serve
+```
+new terminal
+
+``` 
+cd backend
+node server
+```

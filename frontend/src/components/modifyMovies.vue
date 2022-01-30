@@ -1,6 +1,11 @@
 <template>
-  <form class="newMovie">
-    <h2>Ajouter un film</h2>
+
+  <form class="newMovie" method="post">
+<div class="film" v-for="movie in movies" :key="movie">
+  <p> {{movie}}  </p> 
+  </div>
+
+    <h2>Modifier le film</h2>
     <label for="createTitle">Titre du film (requis):</label>
     <input
       type="text"
@@ -59,30 +64,29 @@
     />
     <input
       type="submit"
-      @click="createMovie"
+@click="modifyMovie"
+
       value="Envoyer"
       aria-label="Envoyer formulaire"
     />
-    <input
-      type="submit"
-      @click="oneMovie"
-      value="Envoyer"
-      aria-label="Envoyer formulaire"
-    />
+    <a href=http://localhost:8080/> Back </a>
   </form>
 </template>
 
 <script>
 export default {
-  name: "newMovies",
+name: "modifyMovies", data() { return { movies: [], }; },
 
-  methods: {
-    oneMovie: function (req) {
-      alert(req.params);
-    },
 
-    createMovie: function (e) {
+methods: {
+
+modifyMovie: function (e) {
+
+
       e.preventDefault();
+const url = window.location.pathname; const ID =
+url.substring(url.lastIndexOf('/') + 1);
+
 
       // BUG AVEC GENRE ET ACTOR
 
@@ -96,6 +100,8 @@ export default {
       const posterUrl = document.getElementById("createPosterUrl").value;
 
       let data = {
+id: ID,
+
         title: title,
         year: year,
         runtime: runtime,
@@ -106,20 +112,21 @@ export default {
         posterUrl: posterUrl,
       };
 
-      fetch("http://localhost:3000/api/movies/", {
-        method: "post",
+fetch("http://localhost:3000/api/movies/" + ID, { method: "put",
+
         headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       })
-        .then(() => {
-          alert("Article enregistrée !");
-          location.reload();
-        })
+.then(() => {location.href = "http://localhost:8080/"; }).then(() =>
+{alert("Success")})
+
         .catch((error) => alert(error.message));
     },
-  },
+},
+
+
 };
 </script>
